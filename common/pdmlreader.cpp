@@ -40,6 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "textprotopdml.h"
 #include "udppdml.h"
 #include "vlanpdml.h"
+#include "stppdml.h"
+#include "lacppdml.h"
 
 PdmlReader::PdmlReader(OstProto::StreamConfigList *streams)
 {
@@ -77,6 +79,8 @@ PdmlReader::PdmlReader(OstProto::StreamConfigList *streams)
     factory_.insert("udp", PdmlUdpProtocol::createInstance);
     factory_.insert("udplite", PdmlUdpProtocol::createInstance);
     factory_.insert("vlan", PdmlVlanProtocol::createInstance);
+    factory_.insert("stp", PdmlStpProtocol::createInstance);
+    factory_.insert("slow", PdmlLacpProtocol::createInstance);
 }
 
 PdmlReader::~PdmlReader()

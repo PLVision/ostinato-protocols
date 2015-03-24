@@ -1,0 +1,46 @@
+/*
+Copyright (C) 2013 Marchuk S.
+
+This file is part of "Ostinato"
+
+This is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
+
+import "protocol.proto";
+
+package OstProto;
+
+// LLDP Protocol
+message Lldp {
+
+    message Tlv {
+        optional uint32 tlvtype = 1;
+        optional uint32 length = 2;
+        repeated bytes content = 3;
+        //meta
+        optional int32 inside_id = 6;
+        optional bool is_override_length = 7;
+    }
+
+    repeated Tlv tlvdata = 4;
+
+    //meta
+    optional int32 count = 5;
+    
+}
+
+
+extend Protocol {
+    optional Lldp lldp = 211;
+}

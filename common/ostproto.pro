@@ -1,7 +1,7 @@
 TEMPLATE = lib
 CONFIG += qt staticlib
 QT -= gui
-QT += network script
+QT += network script xml
 LIBS += \
     -lprotobuf
 
@@ -17,7 +17,10 @@ PROTOS = \
     dot2snap.proto \
     vlan.proto \
     svlan.proto \
+    lldp.proto \
     vlanstack.proto \
+    stp.proto \
+    lacp.proto \
     arp.proto \
     ip4.proto \
     ip6.proto \
@@ -43,18 +46,23 @@ HEADERS = \
     protocollist.h \
     protocollistiterator.h \
     streambase.h \
+    tlvmanager.h \
+    converters.h
 
 HEADERS += \
     mac.h \
     vlan.h \
     svlan.h \
     vlanstack.h \
+    lldp.h \
     eth2.h \
     dot3.h \
     llc.h \
     dot2llc.h \
     snap.h \
     dot2snap.h \
+    stp.h \
+    lacp.h \
     arp.h \
     ip4.h \
     ip6.h \
@@ -81,15 +89,20 @@ SOURCES = \
     protocollist.cpp \
     protocollistiterator.cpp \
     streambase.cpp \
+    tlvmanager.cpp \
+    converters.cpp
 
 SOURCES += \
     mac.cpp \
     vlan.cpp \
     svlan.cpp \
+    lldp.cpp \
     eth2.cpp \
     dot3.cpp \
     llc.cpp \
     snap.cpp \
+    stp.cpp \
+    lacp.cpp \
     arp.cpp \
     ip4.cpp \
     ip6.cpp \

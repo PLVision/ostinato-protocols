@@ -1,0 +1,40 @@
+--- ../google/ostinato/client/streamconfigdialog.cpp
++++ ostinatoNew/client/streamconfigdialog.cpp
+@@ -136,8 +136,10 @@
+     mpAvailableProtocolsModel = new QStringListModel(
+         OstProtocolManager->protocolDatabase(), this);
+     lvAllProtocols->setModel(mpAvailableProtocolsModel);
++    lvAllProtocols->setEditTriggers(QAbstractItemView::NoEditTriggers);
+     mpSelectedProtocolsModel = new QStringListModel(this);
+     lvSelectedProtocols->setModel(mpSelectedProtocolsModel);
++    lvSelectedProtocols->setEditTriggers(QAbstractItemView::NoEditTriggers);
+ 
+ 
+     connect(lvAllProtocols->selectionModel(),
+@@ -514,6 +516,8 @@
+ 
+     Q_CHECK_PTR(p);
+     _iter->remove();
++    // Free both protocol and associated widget
++    delete _protocolWidgets.take(p);
+     delete p;
+ 
+     updateSelectProtocolsAdvancedWidget();
+@@ -833,6 +837,8 @@
+                             newId, mpStream));
+                 else
+                     _iter->remove();
++                // Free both protocol and associated widget
++                delete _protocolWidgets.take(p);
+                 delete p;
+                 if (level == ProtoPayload)
+                 {
+@@ -840,6 +846,8 @@
+                     {
+                         p = _iter->next();
+                         _iter->remove();
++                        // Free both protocol and associated widget
++                        delete _protocolWidgets.take(p);
+                         delete p;
+                     }
+                 }

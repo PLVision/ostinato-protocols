@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tlv_base>
+    <tlv_list>
+        <tlv id="0" tlvtype="0" name="End Of LLDPDU" length="0"/>
+        <tlv id="1" tlvtype="1" name="Chassis ID" length="0">
+            <field id="0" name="Chassis ID Subtype" length="1" type="enum" enum="chassis id subtype" defaultvalue=""/>
+            <field id="1" name="Chassis ID" length="1-255" type="depend" dependences="0" defaultvalue="00"/>
+        </tlv>
+        <tlv id="2" tlvtype="2" name="Port ID" length="0">
+            <field id="0" name="Port ID Subtype" length="1" type="enum" enum="port id subtype" defaultvalue=""/>
+            <field id="1" name="Port ID" length="1-255" type="depend" dependences="0" defaultvalue=""/>
+        </tlv>
+        <tlv id="3" tlvtype="3" name="Time To Live" length="2">
+            <field id="0" name="Time To Live (TTL)" length="2" type="decinput" defaultvalue=""/>
+        </tlv>
+        <tlv id="4" tlvtype="4" name="Port Description" length="0">
+            <field id="0" name="Port Description" length="0-255" type="alpha-numeric" defaultvalue=""/>
+        </tlv>
+        <tlv id="5" tlvtype="5" name="System Name" length="0">
+            <field id="0" name="System Name" length="0-255" type="alpha-numeric" defaultvalue=""/>
+        </tlv>
+        <tlv id="6" tlvtype="6" name="System Description" length="0">
+            <field id="0" name="System Description" length="0-255" type="alpha-numeric" defaultvalue=""/>
+        </tlv>
+        <tlv id="7" tlvtype="7" name="System Capabilities" length="4">
+            <field id="1" name="System Capabilities" length="2" type="itemlist" subtype="checkbox" enum="enabled capabilities" defaultvalue=""/>
+            <field id="2" name="Enabled Capabilities" length="2" type="itemlist" subtype="checkbox" enum="enabled capabilities" defaultvalue=""/>
+        </tlv>
+        <tlv id="8" tlvtype="8" name="Management Address" length="0">
+            <field id="0" name="Management Address String Length" length="1" type="length" dependences="1,2" defaultvalue="2"/>
+            <field id="1" name="Management Address Subtype" length="1" type="enum" enum="RFC3232" defaultvalue="1"/>
+            <field id="2" name="Management Address" length="1-31" type="depend" dependences="1" defaultvalue=""/>
+            <field id="3" name="Interface Numbering Subtype" length="1" type="enum" enum="interface numbering subtype" defaultvalue="1"/>
+            <field id="4" name="Interface Number" length="4" type="depend" dependences="3" defaultvalue=""/>
+            <field id="5" name="OID String Length" length="1" type="length"  dependences="6" defaultvalue=""/>
+            <field id="6" name="OID" length="0-128" type="oid" defaultvalue=""/>
+        </tlv>
+        <tlv id="9" tlvtype="127" name="Organizationally Specific TLVs" length="0">
+            <field id="0" name="Organizationally Unique Identifier (OUI)" length="3" type="hexinput" defaultvalue=""/>
+            <field id="1" name="Organizationally Defined Subtype" length="1" type="decinput" defaultvalue=""/>
+            <field id="2" name="Organizationally Defined Information String" length="0-507" type="alpha-numeric" defaultvalue=""/>
+        </tlv>
+        <tlv id="10" tlvtype="126" name="Custom" length="0">
+            <field id="0" name="Information String" length="0-511" type="hexdump" hexdumpheight="230" defaultvalue=""/>
+        </tlv>
+        <tlv id="11" tlvtype="127" name="DCBX ETS Configuration" length="25">
+            <field id="0" name="Organizationally Unique Identifier (OUI)" length="3" type="hexinput" defaultvalue="0080C2"/>
+            <field id="1" name="Organizationally Defined Subtype" length="1" type="decinput" defaultvalue="9"/>
+            <field id="2" name="Information String" length="1" type="bitfields" defaultvalue="">
+                <subfield id="0" name="Willing" length="1" lenunit="bit" type="itemlist" subtype="checkbox" enum="willing" defaultvalue=""/>
+                <subfield id="1" name="CBS" length="1" lenunit="bit" type="itemlist" subtype="checkbox" enum="cbs" defaultvalue=""/>
+                <subfield id="2" name="Reserved" length="3" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="Max TCs" length="3" lenunit="bit" type="decinput" defaultvalue=""/>
+            </field>
+            <field id="3" name="Priority Assignment Table" length="4" type="bitfields" defaultvalue="">
+                <subfield id="0" name="Priority 0" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="1" name="Priority 1" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="2" name="Priority 2" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="Priority 3" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="4" name="Priority 4" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="5" name="Priority 5" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="6" name="Priority 6" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="7" name="Priority 7" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+            </field>
+            <field id="4" name="TC Bandwidth Table" length="8" type="bitfields" defaultvalue="">
+                <subfield id="0" name="TC Bandwidth 0" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="1" name="TC Bandwidth 1" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="2" name="TC Bandwidth 2" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="TC Bandwidth 3" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="4" name="TC Bandwidth 4" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="5" name="TC Bandwidth 5" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="6" name="TC Bandwidth 6" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="7" name="TC Bandwidth 7" length="1" type="decinput" defaultvalue=""/>
+            </field>
+            <field id="5" name="TSA Assignment Table" length="8" type="bitfields" defaultvalue="">
+                <subfield id="0" name="Traffic Class 0" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="1" name="Traffic Class 1" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="2" name="Traffic Class 2" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="Traffic Class 3" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="4" name="Traffic Class 4" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="5" name="Traffic Class 5" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="6" name="Traffic Class 6" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="7" name="Traffic Class 7" length="1" type="decinput" defaultvalue=""/>
+            </field>
+        </tlv>
+        <tlv id="12" tlvtype="127" name="DCBX ETS Recommendation" length="25">
+            <field id="0" name="Organizationally Unique Identifier (OUI)" length="3" type="hexinput" defaultvalue="0080C2"/>
+            <field id="1" name="Organizationally Defined Subtype" length="1" type="decinput" defaultvalue="A"/>
+            <field id="2" name="Reserved" length="1" type="reserved" defaultvalue=""/>
+            <field id="3" name="Priority Assignment Table" length="4" type="bitfields" defaultvalue="">
+                <subfield id="0" name="Priority 0" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="1" name="Priority 1" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="2" name="Priority 2" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="Priority 3" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="4" name="Priority 4" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="5" name="Priority 5" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="6" name="Priority 6" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="7" name="Priority 7" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+            </field>
+            <field id="4" name="TC Bandwidth Table" length="8" type="bitfields" defaultvalue="">
+                <subfield id="0" name="TC Bandwidth 0" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="1" name="TC Bandwidth 1" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="2" name="TC Bandwidth 2" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="TC Bandwidth 3" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="4" name="TC Bandwidth 4" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="5" name="TC Bandwidth 5" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="6" name="TC Bandwidth 6" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="7" name="TC Bandwidth 7" length="1" type="decinput" defaultvalue=""/>
+            </field>
+            <field id="5" name="TSA Assignment Table" length="8" type="bitfields" defaultvalue="">
+                <subfield id="0" name="Traffic Class 0" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="1" name="Traffic Class 1" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="2" name="Traffic Class 2" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="Traffic Class 3" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="4" name="Traffic Class 4" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="5" name="Traffic Class 5" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="6" name="Traffic Class 6" length="1" type="decinput" defaultvalue=""/>
+                <subfield id="7" name="Traffic Class 7" length="1" type="decinput" defaultvalue=""/>
+            </field>
+        </tlv>
+        <tlv id="13" tlvtype="127" name="DCBX Priority Flow Control Configuration" length="6">
+            <field id="0" name="Organizationally Unique Identifier (OUI)" length="3" type="hexinput" defaultvalue="0080C2"/>
+            <field id="1" name="Organizationally Defined Subtype" length="1" type="decinput" defaultvalue="B"/>
+            <field id="2" name="Information String" length="1" type="bitfields" defaultvalue="">
+                <subfield id="0" name="Willing" length="1" lenunit="bit" type="itemlist" subtype="checkbox" enum="willing" defaultvalue=""/>
+                <subfield id="1" name="MBC" length="1" lenunit="bit" type="itemlist" subtype="checkbox" enum="mbc" defaultvalue=""/>
+                <subfield id="2" name="Reserved" length="2" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="3" name="PFC Cap" length="4" lenunit="bit" type="decinput" defaultvalue=""/>
+            </field>
+            <field id="3" name="PFC Enable" length="1" type="itemlist" subtype="checkbox" enum="priority bit mapping" defaultvalue=""/>
+        </tlv>
+        <tlv id="14" tlvtype="127" name="DCBX Application Priority" length="0">
+            <field id="0" name="Organizationally Unique Identifier (OUI)" length="3" type="hexinput" defaultvalue="0080C2"/>
+            <field id="1" name="Organizationally Defined Subtype" length="1" type="decinput" defaultvalue="C"/>
+            <field id="2" name="Reserved" length="1" type="reserved" defaultvalue=""/>
+            <field id="3" name="Application Priority Table" length="3" type="bitfields" defaultvalue="">
+                <subfield id="0" name="Priority" length="3" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="1" name="Reserved" length="2" lenunit="bit" type="decinput" defaultvalue=""/>
+                <subfield id="2" name="Sel" length="3" lenunit="bit" type="enum" enum="sel" defaultvalue=""/>
+		<subfield id="3" name="Protocol ID" length="16" lenunit="bit" type="decinput" defaultvalue="00"/>
+            </field>
+        </tlv>
+        <tlv id="15" tlvtype="127" name="DCBX Congestion Notification" length="6">
+            <field id="0" name="Organizationally Unique Identifier (OUI)" length="3" type="hexinput" defaultvalue="0080C2"/>
+            <field id="1" name="Organizationally Defined Subtype" length="1" type="decinput" defaultvalue="8"/>
+            <field id="2" name="CNPV Indicators" length="1" type="itemlist" subtype="checkbox" enum="priority bit mapping" defaultvalue=""/>
+            <field id="3" name="Ready Indicators" length="1" type="itemlist" subtype="checkbox" enum="priority bit mapping" defaultvalue=""/>
+        </tlv>
+    </tlv_list>
+    <enums>
+        <enum name="port id subtype" type="typelist">
+            <item id="0" name="Reserved" dependentfieldtype="hexinput"/>
+            <item id="1" name="Interface Alias" dependentfieldtype=""/>
+            <item id="2" name="Port Component" dependentfieldtype=""/>
+            <item id="3" name="MAC Address" dependentfieldtype="macaddress"/>
+            <item id="4" name="Network Address" dependentfieldtype="ipv4address"/>
+            <item id="5" name="Interface Name" dependentfieldtype="alpha-numeric"/>
+            <item id="6" name="Agent Circuit ID" dependentfieldtype="alpha-numeric"/>
+            <item id="7" name="Locally Assigned" dependentfieldtype="alpha-numeric"/>
+        </enum>
+        <enum name="chassis id subtype" type="typelist">
+            <item id="0" name="Reserved" value="0" dependentfieldtype=""/>
+            <item id="1" name="Chassis Component" value="1" dependentfieldtype="alpha-numeric"/>
+            <item id="2" name="Interface Alias" value="2" dependentfieldtype=""/>
+            <item id="3" name="Port Component" value="3" dependentfieldtype="alpha-numeric"/>
+            <item id="4" name="MAC Address" value="4" dependentfieldtype="macaddress"/>
+            <item id="5" name="Network Address" value="5" dependentfieldtype="ipv4address"/>
+            <item id="6" name="Interface Name" value="6" dependentfieldtype="alpha-numeric"/>
+            <item id="7" name="Locally Assigned" value="7" dependentfieldtype="alpha-numeric"/>
+        </enum>
+        <enum name="interface numbering subtype" type="typelist">
+            <item id="0" name="Unknown" value="1" dependentfieldtype="hexinput"/>
+            <item id="1" name="IfIndex" value="2" dependentfieldtype="decinput"/>
+            <item id="2" name="System Port Number" value="3" dependentfieldtype="decinput"/>
+        </enum>
+        <enum name="RFC3232" type="typelist">
+            <item id="0" name="IPv4 Address" value="1" dependentfieldtype="ipv4address"/>
+            <item id="1" name="IPv6 Address" value="2" dependentfieldtype="ipv6address"/>
+            <item id="2" name="MAC Address" value="6" dependentfieldtype="macaddress"/>
+        </enum>
+        <enum name="RFC4133" type="typelist">
+            <item id="0" value="1" name="Other" dependentfieldtype="hexinput"/>
+            <item id="1" value="2" name="Unknown" dependentfieldtype="hexinput"/>
+            <item id="2" value="3" name="Chassis" dependentfieldtype=""/>
+            <item id="3" value="4" name="Backplane" dependentfieldtype=""/>
+            <item id="4" value="5" name="Container" dependentfieldtype=""/>
+            <item id="5" value="6" name="PowerSupply" dependentfieldtype=""/>
+            <item id="6" value="7" name="Fan" dependentfieldtype=""/>
+            <item id="7" value="8" name="Sensor" dependentfieldtype=""/>
+            <item id="8" value="9" name="Module" dependentfieldtype=""/>
+            <item id="9" value="10" name="Port" dependentfieldtype=""/>
+            <item id="10" value="11" name="Stack" dependentfieldtype=""/>
+            <item id="11" value="12" name="CPU" dependentfieldtype=""/>
+        </enum>
+        <enum name="sel" type="typelist">
+            <item id="0" name="Ethertype" value="0" dependentfieldtype="decinput"/>
+            <item id="1" name="Port Number over TCP" value="1" dependentfieldtype="decinput"/>
+            <item id="2" name="Port Number over UDP" value="2" dependentfieldtype="decinput"/>
+            <item id="3" name="Port Number over TCP/UDP" value="3" dependentfieldtype="decinput"/>
+            <item id="4" name="Port Number not UDP/TCP" value="4" dependentfieldtype="decinput"/>
+            <item id="5" name="Reserved" value="5" dependentfieldtype="reserved"/>
+            <item id="6" name="Reserved" value="6" dependentfieldtype="reserved"/>
+            <item id="7" name="Reserved" value="7" dependentfieldtype="reserved"/>
+        </enum>
+        <enum name="enabled capabilities" type="checkboxlist">
+            <item id="0" value="1" name="Other"/>
+            <item id="1" value="2" name="Repeater"/>
+            <item id="2" value="3" name="MAC Bridge"/>
+            <item id="3" value="4" name="WLAN Access Point"/>
+            <item id="4" value="5" name="Router"/>
+            <item id="5" value="6" name="Telephone"/>
+            <item id="6" value="7" name="DOCSIS Cable Device"/>
+            <item id="7" value="8" name="Station Only"/>
+            <item id="8" value="9" name="C-VLAN Component of a VLAN Bridge"/>
+            <item id="9" value="10" name="S-VLAN Component of a VLAN Bridge"/>
+            <item id="10" value="11" name="Two-port MAC Relay (TPMR)"/>
+            <item id="11" value="12" name="Reserved"/>
+            <item id="12" value="13" name="Reserved"/>
+            <item id="13" value="14" name="Reserved"/>
+            <item id="14" value="15" name="Reserved"/>
+            <item id="15" value="16" name="Reserved"/>
+        </enum>
+        <enum name="willing" type="checkboxlist">
+            <item id="0" value="1" name=""/>
+        </enum>
+        <enum name="cbs" type="checkboxlist">
+            <item id="0" value="1" name=""/>
+        </enum>
+        <enum name="mbc" type="checkboxlist">
+            <item id="0" value="1" name=""/>
+        </enum>
+        <enum name="priority bit mapping" type="checkboxlist">
+            <item id="0" value="0" name="Priority 0"/>
+            <item id="1" value="1" name="Priority 1"/>
+            <item id="2" value="2" name="Priority 2"/>
+            <item id="3" value="3" name="Priority 3"/>
+            <item id="4" value="4" name="Priority 4"/>
+            <item id="5" value="5" name="Priority 5"/>
+            <item id="6" value="6" name="Priority 6"/>
+            <item id="7" value="7" name="Priority 7"/>
+        </enum>
+    </enums>
+    <types>
+        <type id="0" name="hexinput" additional_arguments=""/>
+        <type id="1" name="macaddress" additional_arguments=""/>
+        <type id="2" name="ipv4address" additional_arguments=""/>
+        <type id="3" name="ipv6address" additional_arguments=""/>
+        <type id="4" name="alpha-numeric" additional_arguments=""/>
+        <type id="5" name="oid" additional_arguments=""/>
+        <type id="6" name="time" additional_arguments=""/>
+        <type id="7" name="length" additional_arguments="dependences"/>
+        <type id="8" name="decinput" additional_arguments=""/>
+        <type id="9" name="hexdump" additional_arguments="hexdumpheight"/>
+        <type id="10" name="enum" additional_arguments="enum"/>
+        <type id="11" name="itemlist" additional_arguments="enum,subtype"/>
+        <type id="12" name="bitfields" additional_arguments=""/>
+        <type id="13" name="bininput" additional_arguments=""/> 
+        <type id="14" name="depend" additional_arguments="dependences"/>
+        <type id="15" name="reserved" additional_arguments=""/>
+    </types>
+</tlv_base>
+<!---
+    --------------------------------
+    This file is part of Ostinato.
+    This file containt database of TLVs for LLDP protocol.
+    This file is used by the class "tlvmanager".
+    You can edit and modify this file for adding support your specific TLVs.
+    --------------------------------
+    Note:
+    - Empty parameters "dependentfieldtype" or "type" will be interpreted as HexInput.
+    //- length="" means that the field size will be calculated automatically based on the value of "dependentses" parameter(in fieds).
+    - maximum value for decinput - is 0xEFFFFFFF (4 bytes without first bit) (becaus QIntValidator class not support UInt32).
+    - lenunit attribute can take two values​​: "bit" "octet".
+    - hexdump not can`t validate on length.
+    - defaultvalue used hex base input format
+    - for enums first ID must be 0
+--->

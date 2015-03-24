@@ -24,12 +24,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 class IntComboBox : public QComboBox
 {
+    Q_OBJECT
+
 public:
     IntComboBox(QWidget *parent = 0)
         : QComboBox(parent)
     {
         valueMask_ = 0xFFFFFFFF;
         setEditable(true);
+        setObjectName("IntComboBox");
+        setCompleter(0);
     }
     void addItem(int value, const QString &text) 
     {
@@ -53,6 +57,7 @@ public:
             setCurrentIndex(index);
         else
             setEditText(QString().setNum(value));
+        old_value = value;
     }
     uint valueMask()
     {
@@ -62,8 +67,14 @@ public:
     {
         valueMask_ = mask;
     }
+
+signals:
+    void focusLost();
 private:
     uint valueMask_;
+    int old_value;
+protected:
+    void focusOutEvent(QFocusEvent *e);
 };
 
 #endif

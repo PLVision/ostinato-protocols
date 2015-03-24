@@ -85,10 +85,6 @@ SOURCES += \
     streammodel.cpp \
     updater.cpp
 
-OTHER_FILES += \
-    ../common/tlv_base.xml
-
-config.files = ../common/tlv_base.xml
 
 QMAKE_DISTCLEAN += object_script.*
 

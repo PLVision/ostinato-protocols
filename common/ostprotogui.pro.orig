@@ -11,13 +11,10 @@ FORMS = \
 FORMS += \
     mac.ui \
     vlan.ui \
-    lldp.ui \
     eth2.ui \
     dot3.ui \
     llc.ui \
     snap.ui \
-    stp.ui \
-    lacp.ui \
     arp.ui \
     ip4.ui \
     ip6.ui \
@@ -46,8 +43,7 @@ HEADERS = \
     pythonfileformat.h \
     pdmlprotocol.h \
     pdmlprotocols.h \
-    pdmlreader.h \
-    intcombobox.h
+    pdmlreader.h
 
 HEADERS += \
     abstractprotocolconfig.h \
@@ -57,15 +53,12 @@ HEADERS += \
     vlanconfig.h \
     svlanconfig.h \
     vlanstackconfig.h \
-    lldpconfig.h \
     eth2config.h \
     dot3config.h \
     llcconfig.h \
     dot2llcconfig.h \
     snapconfig.h \
     dot2snapconfig.h \
-    stpconfig.h \
-    lacpconfig.h \
     arpconfig.h \
     ip4config.h \
     ip6config.h \
@@ -97,13 +90,10 @@ SOURCES += \
     protocolwidgetfactory.cpp \
     macconfig.cpp \
     vlanconfig.cpp \
-    lldpconfig.cpp \
     eth2config.cpp \
     dot3config.cpp \
     llcconfig.cpp \
     snapconfig.cpp \
-    stpconfig.cpp \
-    lacpconfig.cpp \
     arpconfig.cpp \
     ip4config.cpp \
     ip6config.cpp \
@@ -122,8 +112,6 @@ SOURCES += \
 SOURCES += \
     vlanpdml.cpp \
     svlanpdml.cpp \
-    stppdml.cpp \
-    lacppdml.cpp \
     eth2pdml.cpp \
     llcpdml.cpp \
     arppdml.cpp \

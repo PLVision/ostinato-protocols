@@ -5,10 +5,14 @@ isEmpty(PREFIX) {
     macx:PREFIX = "/Applications/"
     win32:PREFIX = "../"
 }
+DATADIR = $$PREFIX/share/
+DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
+config.path = $$DATADIR/$${TARGET}
+
 macx {
     target.path = $$PREFIX/Ostinato
 } else {
     target.path = $$PREFIX/bin
 }
 
-INSTALLS += target
+INSTALLS += target config
