@@ -1,0 +1,9 @@
+Known issues:
+1. In TLVs ETS Configuration and ETS Recommendation values of "TC Bandwidth Table", "TSA Assignment Table" fields are not processed and is not displayed in Packet View tab.
+2. In Mgmt TLV OID converter works incorrectly.
+3. In TLVs PFC Configuratoin, and ETS Configuration subfields "willing", "cbs", "mbc" do not scale in UI properly.
+4. Packet View for Mgmt TLV is untidy.
+5. Configured fields are disabled after importing previously saved packet in PCAP/PDML format.
+6. LLDP protocol is displayed as HexDump after importing previously saved packet in PCAP format.
+7. Config file tlv_base.xml didn't install to /usr/local/share/ostinato when ostinato was  installed second time.
+8. Ostinato client logs contains tlvmanager error.

@@ -1,0 +1,75 @@
+LLDP TLV creation based on XML
+
+LLDP protocol is an XML-based protocol in Ostinato traffic generator. XML-based structure provides
+a possibility to add a custom TLVs, or easily update existing ones.
+
+Data model description: http://www.mindmeister.com/442871584/data­model
+Default XML file path after Ostinato installation: /usr/local/share/ostinato/tlv_base.xml
+
+
+For adding a TLV, you are to add the following struct to the file:
+
+<tlv id="" tlvtype="" name="" length="">
+    <field id="" name="" length="" type="" defaultvalue="" {additional arguments}/>
+</tlv>
+
+Every TLV must have a unique ID.
+If TLV: length is not fixed - put 0;
+Every field in TLV must have a unique ID.
+
+--------------------TLV------------------------------------
+*id - unique integer value;
+*tlvtype - integer value;
+*name - unique string value (cannot contain ';' symbol);
+*length - can have fixed “n” value;
+
+--------------------Field----------------------------------
+*id - unique integer value;
+*tlvtype - integer value;
+*name - unique string value (cannot contain ';' symbol);
+*length - can have the following content:
+    fixed “n” value;
+    “n1-n2” range value;
+lenunit - string value. Units of length. Not required. Can have the following content:
+    “octet”(dafault);
+    “bit”;
+*type - types of field input widjet:
+    “macaddress” //simple MAC data input
+    "ipv4address" //Simple IPv4 data input
+    "ipv6address" //Simple IPv6 data input
+    "alpha-numeric" //Input text. Converts to UTF-8
+    "oid" //input OID. Converts to ASN.1 format
+    "hexinput" //Simple hex data input
+    "decinput" //Simple dec data input (with ranges)
+    "hexdump" //widjet: HexDumpView (HEX and ASCII view)
+    "enum" // widjet: Dropdown //additional arguments: enum=”(enum name)”
+    "itemlist" //widjet: Checkbox/radiobutton //additional arguments: enum=”(enum name)”, subtype=”(“checkbox”,”radio”)”
+    "time" //Input time in seconds (dec input)
+    "length" //Length field. Non editable. Calculates length of fields. //Additional arguments: dependences=”(list of values ("n1,n2,n3..."))”
+        "depend" //This field depends on some field(enum) value. //Additional arguments: dependences=”(field id)”
+    "bitfields" //Field has sub-fields.
+*defaultvalue - Default value. Input in HEX format.
+
+--------------------enums----------------------------------
+<enum name="interface numbering subtype" type="typelist">
+    <item id="0" name="field1" value="10" dependentfieldtype="hexinput"/>
+    <item id="1" name="field2" value="E2" dependentfieldtype="decinput"/>
+    <item id="2" name="field3" value="3B" dependentfieldtype="decinput"/>
+</enum>
+
+id - unique ID
+name - name of item
+type - type of enum ("typelist","checkboxlist",”radio”) // look in XML file
+value - HEX value in packet
+dependfieldtyte - type of depend field.
+
+-----------------------------------------------------------
+
+Notes:
+- Empty parameters "dependentfieldtype" or "type" will be interpreted as HexInput.
+- Length="-1" means that the field size will be calculated automatically based on the value of "dependences" parameter(in fields).
+- Maximum value for decinput is 0xEFFFFFFF (4 bytes without first bit) (because QIntValidator class does not support UInt32).
+- lenunit attribute can have two values​​: "bit" and "octet".
+- hexdump cannot validate on length.
+- defaultvalue uses hex-based input format.
+- For enums, the first ID must be 0.
